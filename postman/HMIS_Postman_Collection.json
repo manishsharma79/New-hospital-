@@ -1,0 +1,180 @@
+{
+  "info": {
+    "name": "Hospital Management Information System REST API Collection",
+    "description": "Complete Postman collection for Hospital Management Information System covering Authentication, Admin, Patient, Appointment, Doctor, Prescription, Pharmacist, Diagnostic, and Billing APIs.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000/api" },
+    { "key": "token", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "1. Authentication",
+      "item": [
+        {
+          "name": "POST Login (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{baseUrl}}/auth/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@hmis.edu\",\n  \"password\": \"Admin@123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "GET Current Authenticated User",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{baseUrl}}/auth/me"
+          }
+        },
+        {
+          "name": "POST Logout",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{baseUrl}}/auth/logout"
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Administrator",
+      "item": [
+        {
+          "name": "GET Admin Dashboard Stats",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{baseUrl}}/admin/dashboard"
+          }
+        },
+        {
+          "name": "GET All Staff",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{baseUrl}}/admin/staff"
+          }
+        },
+        {
+          "name": "GET Departments",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{baseUrl}}/admin/departments"
+          }
+        },
+        {
+          "name": "GET Staff Schedules",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{baseUrl}}/admin/schedules"
+          }
+        },
+        {
+          "name": "GET Billing Overview",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{baseUrl}}/admin/billing-overview"
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Patients & Appointments",
+      "item": [
+        {
+          "name": "POST Register New Patient",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{baseUrl}}/patients",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Siddharth Verma\",\n  \"dob\": \"1990-05-12\",\n  \"gender\": \"Male\",\n  \"bloodGroup\": \"O+\",\n  \"mobileNumber\": \"9810099887\",\n  \"city\": \"Pune\",\n  \"state\": \"Maharashtra\",\n  \"country\": \"India\",\n  \"emergencyContactName\": \"Nisha Verma\",\n  \"emergencyRelationship\": \"Spouse\",\n  \"emergencyContactNumber\": \"9810099888\"\n}"
+            }
+          }
+        },
+        {
+          "name": "GET Search Patients",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{baseUrl}}/patients/search?q=HMIS-PAT-0001"
+          }
+        },
+        {
+          "name": "GET Patient History",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{baseUrl}}/patients/1/history"
+          }
+        },
+        {
+          "name": "GET Doctor Availability",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{baseUrl}}/appointments/availability?date=2026-11-22"
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Doctor, Pharmacy & Billing",
+      "item": [
+        {
+          "name": "GET Doctor Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{baseUrl}}/doctor/dashboard"
+          }
+        },
+        {
+          "name": "GET Medicines Inventory",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{baseUrl}}/medicines"
+          }
+        },
+        {
+          "name": "GET Low Stock Medicines",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{baseUrl}}/medicines/low-stock"
+          }
+        },
+        {
+          "name": "PUT Verify Prescription",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{baseUrl}}/prescriptions/2/verify"
+          }
+        },
+        {
+          "name": "GET Billing Records",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{baseUrl}}/billing"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Meridian HMIS — Hospital Management Information System",
+  "description": "Commercial Hospital Management Information System (HMIS) with Role-Based Dashboards for Administrator, Registration Staff, Doctor, and Pharmacist, following Level 0, 1, and 2 DFD specifications.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
